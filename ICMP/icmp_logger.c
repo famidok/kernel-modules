@@ -15,7 +15,7 @@ MODULE_VERSION("1.0");
 static struct nf_hook_ops netfilter_ops;
 
 static unsigned int icmp_logger_hook(void *priv,
-									 strcut sk_buff *skb,
+									 struct sk_buff *skb,
 									 const struct nf_hook_state *state) {
 	struct iphdr *iph;
 
@@ -37,7 +37,7 @@ static unsigned int icmp_logger_hook(void *priv,
 	return NF_ACCEPT;
 }
 
-static int __int icmp_logger_init(void) {
+static int __init icmp_logger_init(void) {
 	printk(KERN_INFO "[ICMP-LOGGER] Module loaded successfully.\n");
 
 	netfilter_ops.hook = (nf_hookfn *)icmp_logger_hook;
